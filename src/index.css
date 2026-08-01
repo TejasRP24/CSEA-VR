@@ -1,35 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;550;700&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+/* ===================================================================
+   CSEA-VR Design System — Light Theme Only
+   Palette: Cool White canvas · Deep Navy text · Blue accent
+   =================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* Core Theme Colors */
-  --bg: #ffffff; /* Crisp white background */
-  --bg-dots: rgba(0, 0, 0, 0.05);
-  --text: #475569; /* Slate 600 for secondary text */
-  --text-h: #0f172a; /* Slate 900 for headings */
-  --border: rgba(0, 0, 0, 0.08);
-  
-  /* Vibrant Accents */
-  --accent: #2563eb; /* Vibrant Blue */
-  --accent-secondary: #0ea5e9; /* Light Blue */
-  --accent-light: rgba(37, 99, 235, 0.1);
-  
-  /* Glassmorphism Surfaces */
-  --surface: rgba(255, 255, 255, 0.7); /* White semi-transparent */
-  --surface-strong: rgba(255, 255, 255, 0.95);
-  --surface-hover: rgba(248, 250, 252, 0.8); /* Slate 50 */
-  --muted: rgba(0, 0, 0, 0.4);
+  /* ── Core Palette ────────────────────────────────────────────── */
+  --text:        #334155;        /* slate-700 — body copy          */
+  --text-h:      #0f172a;        /* slate-900 — headings           */
+  --bg:          #f8fafc;        /* slate-50  — page canvas        */
+  --border:      #e2e8f0;        /* slate-200 — subtle dividers    */
+  --code-bg:     #f1f5f9;        /* slate-100 — code surfaces      */
+  --muted:       #64748b;        /* slate-500 — secondary text     */
 
-  /* Typography */
-  --sans: 'Inter', 'Poppins', system-ui, sans-serif;
-  --display: 'Space Grotesk', 'Poppins', system-ui, sans-serif;
-  --mono: 'JetBrains Mono', monospace;
+  /* ── Accent ─────────────────────────────────────────────────── */
+  --accent:          #2563eb;                      /* blue-600              */
+  --accent-light:    rgba(37, 99, 235, 0.08);      /* hover tint            */
+  --accent-border:   rgba(37, 99, 235, 0.25);      /* accent ring           */
+  --accent-secondary:#7c3aed;                      /* violet-700 — support  */
 
-  /* Utility */
-  --glass-blur: blur(16px);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.5);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+  /* ── Surface / Glass tokens ─────────────────────────────────── */
+  --surface:         rgba(255, 255, 255, 0.7);
+  --surface-strong:  rgba(255, 255, 255, 0.9);
+  --surface-hover:   rgba(255, 255, 255, 0.85);
+  --glass-blur:      blur(24px);
+  --glass-border:    1px solid rgba(255, 255, 255, 0.6);
+  --glass-shadow:    0 8px 32px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow:          0 4px 24px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-lg:       0 16px 48px rgba(15, 23, 42, 0.12), 0 4px 8px rgba(15, 23, 42, 0.06);
 
+  /* ── Typography ─────────────────────────────────────────────── */
+  --sans:    'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono:    ui-monospace, 'JetBrains Mono', Consolas, monospace;
+
+  font: 16px/1.6 var(--sans);
+  letter-spacing: 0.01em;
+  color: var(--text);
+  background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -38,28 +47,115 @@
 
 body {
   margin: 0;
-  background-color: var(--bg);
-  background-image: 
-    radial-gradient(var(--bg-dots) 1px, transparent 1px),
-    radial-gradient(rgba(0, 0, 0, 0.02) 2px, transparent 2px);
-  background-size: 24px 24px, 120px 120px;
-  background-position: 0 0, 40px 40px;
+  background: var(--bg);
   color: var(--text);
-  font-family: var(--sans);
-  overflow-x: hidden;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
-::-webkit-scrollbar-track {
-  background: var(--bg);
+
+/* ── Typography Scale ─────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading);
+  color: var(--text-h);
+  margin: 0;
+  line-height: 1.2;
 }
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.04em; }
+h2 { font-size: clamp(1.4rem, 3vw, 2rem);  font-weight: 700; letter-spacing: -0.02em; }
+h3 { font-size: 1.25rem; font-weight: 700; }
+p  { margin: 0; }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  padding: 2px 6px;
+  background: var(--code-bg);
+  border-radius: 4px;
+  color: var(--text-h);
 }
-::-webkit-scrollbar-thumb:hover {
+
+/* ── Shared Zone Utilities ────────────────────────────────────── */
+
+/* Badge pill that appears in every zone hero */
+.zone-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 100px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.zone-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
   background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  animation: badgePulse 2.5s ease-in-out infinite;
+}
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* Standard section heading with left accent bar */
+.zone-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-h);
+  letter-spacing: -0.02em;
+}
+.zone-section-title::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 28px;
+  border-radius: 4px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* White card surface */
+.zone-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.zone-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+/* Soft gradient page background overlay */
+.zone-page-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 0%,   rgba(37, 99, 235, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(124, 58, 237, 0.05) 0%, transparent 60%);
 }
