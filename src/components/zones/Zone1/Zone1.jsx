@@ -110,7 +110,7 @@ export default function Zone1() {
     };
 
     return (
-        <div style={{width: '100vw', height: 'calc(100vh - 70px)', overflow: 'hidden', position: 'relative'}}>
+        <div style={{width: '100%', height: 'calc(100vh - 70px)', overflow: 'hidden', position: 'relative', background: 'var(--bg)'}}>
             <div className={`zone1-carousel ${sliderClass}`}>
                 <div className="list">
                     {items.map((item, index) => {
@@ -119,27 +119,27 @@ export default function Zone1() {
                             <div className="item" key={item.id}>
                                 <img src={`/img/zone1/${item.id}.png`} alt={item.title} />
                                 <div className="introduce">
-                                    <div className="title" style={{color: '#0f172a'}}>{item.category.toUpperCase()}</div>
-                                    <div className="topic" style={{color: '#2563eb'}}>{item.topic}</div>
-                                    <div className="des" style={{color: '#334155'}}>{item.description}</div>
-                                    <button className="seeMore" onClick={handleSeeMore} style={{color: '#0f172a', borderColor: '#0f172a'}}>
+                                    <div className="title" style={{color: 'var(--muted)', fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase'}}>{item.category}</div>
+                                    <div className="topic" style={{color: 'var(--text-h)'}}>{item.topic}</div>
+                                    <div className="des" style={{color: 'var(--text)'}}>{item.description}</div>
+                                    <button className="seeMore" onClick={handleSeeMore} style={{color: 'var(--accent)', borderColor: 'var(--accent)'}}>
                                         SEE MORE &#8599;
                                     </button>
                                 </div>
                                 <div className="detail">
-                                    <div className="title" style={{color: '#0f172a'}}>{item.title}</div>
-                                    <div className="des" style={{color: '#334155'}}>{item.description}</div>
-                                    <div className="specifications" style={{color: '#334155', borderColor: '#cbd5e1'}}>
+                                    <div className="title" style={{color: 'var(--text-h)'}}>{item.title}</div>
+                                    <div className="des" style={{color: 'var(--text)'}}>{item.description}</div>
+                                    <div className="specifications" style={{color: 'var(--text)', borderColor: 'var(--border)'}}>
                                         {item.specifications.map((spec, i) => (
                                             <div key={i}>
-                                                <p>{spec.label}</p>
-                                                <p style={{color: '#2563eb'}}>{spec.value}</p>
+                                                <p style={{color: 'var(--muted)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em'}}>{spec.label}</p>
+                                                <p style={{color: 'var(--text-h)', fontWeight: 800}}>{spec.value}</p>
                                             </div>
                                         ))}
                                     </div>
                                     <div className="checkout">
-                                        <button style={{color: '#0f172a', borderColor: '#94a3b8'}}>REGISTER</button>
-                                        <button style={{backgroundColor: '#2563eb', color: '#fff', border: 'none'}}>SCHEDULE</button>
+                                        <button style={{color: 'var(--text-h)', borderColor: 'var(--border)', background: '#fff', fontWeight: 700}}>REGISTER</button>
+                                        <button style={{backgroundColor: 'var(--accent)', color: '#fff', border: 'none', fontWeight: 700, boxShadow: '0 4px 14px rgba(37,99,235,0.3)'}}>SCHEDULE</button>
                                     </div>
                                 </div>
                             </div>
@@ -148,9 +148,9 @@ export default function Zone1() {
                 </div>
 
                 <div className="arrows">
-                    <button id="prev" onClick={handlePrev} style={{color: '#0f172a', borderColor: '#94a3b8'}}>&lt;</button>
-                    <button id="next" onClick={handleNext} style={{color: '#0f172a', borderColor: '#94a3b8'}}>&gt;</button>
-                    <button id="back" onClick={handleBack} style={{color: '#0f172a', borderColor: '#0f172a'}}>See All Highlights &#8599;</button>
+                    <button id="prev" onClick={handlePrev}>&lt;</button>
+                    <button id="next" onClick={handleNext}>&gt;</button>
+                    <button id="back" onClick={handleBack} style={{color: 'var(--accent)', borderColor: 'var(--accent)'}}>See All Highlights &#8599;</button>
                 </div>
             </div>
         </div>

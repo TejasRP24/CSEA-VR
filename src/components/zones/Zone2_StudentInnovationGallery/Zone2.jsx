@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../../../components-css/Zone2.css';
 import CategoryPage from './CategoryPage';
 import ProjectDetail from './ProjectDetail';
@@ -59,33 +59,7 @@ const sanitizeIcon = (icon) => {
   return String(icon).replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{26FF}]/gu, '') || '';
 };
 
-function ThemeSwitcher() {
-  const [theme, setTheme] = useState(() => localStorage.getItem('site-theme') || '');
 
-  useEffect(() => {
-    const root = document.documentElement;
-    root.classList.remove('theme-one', 'theme-two');
-    if (theme) root.classList.add(theme);
-    localStorage.setItem('site-theme', theme || '');
-  }, [theme]);
-
-  return (
-    <div style={{ display: 'flex', gap: 8 }}>
-      <button
-        onClick={() => setTheme('theme-one')}
-        style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid var(--border)', background: theme==='theme-one' ? 'var(--accent)' : 'var(--bg)', color: theme==='theme-one' ? 'var(--bg)' : 'var(--text)'}}
-      >Theme A</button>
-      <button
-        onClick={() => setTheme('theme-two')}
-        style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid var(--border)', background: theme==='theme-two' ? 'var(--accent)' : 'var(--bg)', color: theme==='theme-two' ? 'var(--bg)' : 'var(--text)'}}
-      >Theme B</button>
-      <button
-        onClick={() => setTheme('')}
-        style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid var(--border)', background: theme==='' ? 'var(--accent)' : 'var(--bg)', color: theme==='' ? 'var(--bg)' : 'var(--text)'}}
-      >Default</button>
-    </div>
-  );
-}
 
 const Zone2 = () => {
   const [view, setView] = useState('home');
@@ -115,11 +89,6 @@ const Zone2 = () => {
 
   return (
     <div className="z2-root">
-
-      {/* Theme switcher — quick review toggles */}
-      <div style={{ position: 'absolute', top: 18, right: 18, zIndex: 60 }}>
-        <ThemeSwitcher />
-      </div>
 
       {/* Breadcrumb */}
       {view !== 'home' && (

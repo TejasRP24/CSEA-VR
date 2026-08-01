@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import Zone1 from "./components/zones/Zone1/Zone1";
@@ -13,26 +13,6 @@ import FloatingChatbot from "./components/chatbot/FloatingChatbot";
 import "./App.css";
 
 export default function App() {
-  const [systemTime, setSystemTime] = useState("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setSystemTime(
-        now.toLocaleString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        })
-      );
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <Router>
       <div className="min-h-screen text-slate-800 relative font-sans flex flex-col antialiased">

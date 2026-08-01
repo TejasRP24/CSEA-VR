@@ -42,7 +42,7 @@ function Zone3() {
             </motion.section>
 
             {/* TECHNOLOGY GRID (BENTO BOX) */}
-            <section className="max-w-[1600px] w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:auto-rows-[300px]">
+            <section className="max-w-[1600px] w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:auto-rows-[240px]">
                 {technologies.map((tech, index) => {
                     const Icon = technologyIcons[tech.slug];
                     const spanClass = getGridSpan(index);
@@ -54,10 +54,10 @@ function Zone3() {
                             whileInView={{ opacity: 1, scale: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            whileHover={{ scale: 1.02, y: -5 }}
+                            whileHover={{ scale: 1.01, y: -4 }}
                             key={tech.id}
                             onClick={() => navigate(`/technology/${tech.slug}`)}
-                            className={`group relative bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 overflow-hidden cursor-pointer shadow-[0_15px_40px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-500 flex flex-col ${spanClass}`}
+                            className={`group relative bg-white border border-slate-200 rounded-3xl p-6 md:p-8 overflow-hidden cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_48px_rgba(37,99,235,0.1)] transition-all duration-500 flex flex-col gap-6 ${spanClass}`}
                             style={{ 
                                 '--accent': tech.accentColor || '#3b82f6',
                                 '--accent-light': (tech.accentColor || '#3b82f6') + '15'
@@ -69,23 +69,38 @@ function Zone3() {
                                 style={{ backgroundColor: 'var(--accent)' }}
                             />
 
-                            <div className="flex justify-between items-start mb-auto relative z-10">
-                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-slate-50 border border-slate-100 shadow-sm group-hover:scale-110 transition-transform duration-500">
-                                    {Icon && <Icon size={32} color="var(--accent)" />}
+                            <div className="flex justify-between items-start relative z-10">
+                                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl bg-slate-50 border border-slate-100 shadow-sm group-hover:scale-110 transition-transform duration-500">
+                                    {Icon && <Icon size={24} color="var(--accent)" />}
                                 </div>
-                                <div className="px-4 py-1.5 rounded-full text-xs font-bold border" style={{ color: 'var(--accent)', backgroundColor: 'var(--accent-light)', borderColor: 'var(--accent-light)' }}>
+                                <div className="px-3.5 py-1 rounded-full text-[11px] font-bold border" style={{ color: 'var(--accent)', backgroundColor: 'var(--accent-light)', borderColor: 'var(--accent-light)' }}>
                                     {tech.labsCount} Labs
                                 </div>
                             </div>
 
-                            <div className="mt-8 relative z-10 flex flex-col gap-2">
-                                <h2 className={`font-black text-slate-900 tracking-tight leading-none group-hover:text-blue-600 transition-colors ${isLarge ? 'text-4xl md:text-5xl' : 'text-2xl md:text-3xl'}`}>
+                            <div className="relative z-10 flex flex-col gap-2">
+                                <h2 className={`font-black text-slate-900 tracking-tight leading-none group-hover:text-blue-600 transition-colors ${isLarge ? 'text-3xl md:text-4xl' : 'text-xl md:text-2xl'}`}>
                                     {tech.title}
                                 </h2>
-                                <p className="text-slate-500 font-medium leading-relaxed max-w-lg mt-2 line-clamp-3">
+                                <p className={`text-slate-500 font-medium leading-relaxed max-w-lg mt-1 ${isLarge ? 'line-clamp-5 text-sm' : 'line-clamp-3 text-xs'}`}>
                                     {tech.shortDescription || "Explore laboratories and facilities under this technology."}
                                 </p>
                             </div>
+
+                            {/* Show Labs list on large card to fill the blank space */}
+                            {isLarge && tech.labs && (
+                                <div className="flex flex-col gap-3 border-t border-slate-100 pt-6 relative z-10">
+                                    <span className="text-[10px] font-mono text-slate-400 uppercase font-black tracking-wider">Associated Facilities</span>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        {tech.labs.slice(0, 4).map((lab) => (
+                                            <div key={lab.id} className="flex items-center gap-2.5 text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors">
+                                                <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--accent)' }}></span>
+                                                <span className="truncate">{lab.name}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
 
                             {/* Massive background number */}
                             <span className="absolute -bottom-4 -right-2 text-[120px] font-black text-slate-100/50 pointer-events-none font-mono tracking-tighter leading-none group-hover:scale-110 transition-transform duration-700">

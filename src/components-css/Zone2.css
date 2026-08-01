@@ -1,16 +1,14 @@
 /* =============================================
    Zone2.css — Gallery Home + Category Pages
-   Palette: Warm Cream · Sage · Dusty Blue ·
-            Terracotta · Mustard · Charcoal
+   Uses unified Inter font from index.css global
    ============================================= */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
 /* ── Root ──────────────────────────────────── */
 .z2-root {
   min-height: 100vh;
   width: 100%;
   background: var(--bg);
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: var(--sans);
   color: var(--text);
   position: relative;
   overflow-x: clip;
@@ -42,7 +40,7 @@
   border: none;
   color: var(--muted);
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 13px;
   font-weight: 500;
   padding: 0;
@@ -79,7 +77,7 @@
   background: var(--bg);
 }
 .z2-hero-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--heading);
   font-size: clamp(56px, 6.5vw, 92px);
   font-weight: 900;
   line-height: 1.02;
@@ -136,7 +134,7 @@
 
 /* Background decorative number */
 .z2-cat-number {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--heading);
   font-size: 120px;
   font-weight: 900;
   color: var(--accent-light, #EBF3EB);
@@ -171,7 +169,7 @@
   z-index: 1;
 }
 .z2-cat-name {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--heading);
   font-size: 26px;
   font-weight: 700;
   color: var(--text-h);
@@ -200,7 +198,7 @@
   font-weight: 600;
   color: var(--muted);
   padding-top: 8px;
-  border-top: 1px solid #EDE8E0;
+  border-top: 1px solid var(--border);
   transition: color 0.2s;
   position: relative;
   z-index: 1;
@@ -229,7 +227,7 @@
   gap: 28px;
 }
 .z2-catpage-num {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--heading);
   font-size: 110px;
   font-weight: 900;
   color: var(--border);
@@ -248,7 +246,7 @@
   margin-bottom: 8px;
 }
 .z2-catpage-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--heading);
   font-size: 44px;
   font-weight: 700;
   letter-spacing: -0.5px;
@@ -282,7 +280,7 @@
   justify-content: space-between;
   gap: 16px;
   text-align: left;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--sans);
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
   box-shadow: 0 1px 6px rgba(10,25,47,0.04);
@@ -301,7 +299,7 @@
   min-width: 0;
 }
 .z2-proj-idx {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--heading);
   font-size: 20px;
   font-weight: 700;
   color: var(--border);

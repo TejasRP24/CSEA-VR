@@ -1,201 +1,296 @@
 /* =============================================
    Zone2Detail.css — Project Detail Layout
+   All classes referenced by ProjectDetail.jsx
    ============================================= */
 
 /* ─── Detail Page Container ─────────────────── */
+/* FIXED: was split into two invalid nested rules */
 .z2-detail {
   position: relative;
-.z2-detail {
   z-index: 2;
   display: flex;
+  flex-direction: row;
   width: 100%;
   max-width: none;
   margin: 0;
   padding: 40px 24px 80px;
   gap: 32px;
   box-sizing: border-box;
-}
+  align-items: flex-start;
 }
 
 /* ─── Sticky Left Nav Section Navigator ─────── */
 .z2-section-nav {
   position: sticky;
-  top: 100px;
+  top: 90px;
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 130px;
+  min-width: 130px;
   height: fit-content;
   flex-shrink: 0;
 }
 
 .z2-sec-btn {
-  background: var(--surface);
+  background: #fff;
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 8px 6px;
+  border-radius: 12px;
+  padding: 10px 8px;
   color: var(--muted);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 10px;
+  font-family: var(--sans);
+  font-size: 11px;
   font-weight: 700;
   text-align: center;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 4px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
 }
-
 .z2-sec-btn:hover {
-  background: var(--surface-strong);
+  background: var(--code-bg);
   color: var(--text-h);
   transform: translateX(4px);
+  border-color: var(--accent-border);
 }
-
 .z2-sec-btn.active {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--bg);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05),
-              0 4px 20px rgba(0, 0, 0, 0.25);
+  color: #fff;           /* FIXED: was var(--bg) which could be transparent/light */
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
   transform: translateX(6px);
 }
-
 .z2-sec-btn-icon {
   font-size: 16px;
+  line-height: 1;
+}
+.z2-sec-btn-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-/* ─── Right Scroll Container ───────────────── */
+/* ─── Right Scroll Container ─────────────────── */
 .z2-detail-scroll {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 64px;
-  min-width: 0; /* Prevents overflow */
+  gap: 56px;
+  min-width: 0;
 }
 
-/* ─── Hero Banner ──────────────────────────── */
+/* ─── Hero Banner ─────────────────────────────── */
 .z2-detail-hero {
   position: relative;
-  background: var(--surface-strong);
+  background: #fff;
   border: 1px solid var(--border);
-  border-radius: 28px;
-  padding: 48px;
+  border-radius: 24px;
+  padding: 36px 40px;
   display: flex;
-  gap: 28px;
+  gap: 24px;
   align-items: center;
   overflow: hidden;
-  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
 }
-
+/* Left accent stripe — FIXED: was z2-detail-hero-accent, JSX uses z2-detail-hero-stripe */
+.z2-detail-hero-stripe,
 .z2-detail-hero-accent {
   position: absolute;
   top: 0;
   left: 0;
-  width: 6px;
+  width: 5px;
   height: 100%;
-  background: var(--accent);
 }
 
 .z2-detail-hero-icon {
   font-size: 64px;
-  background: var(--surface);
-  width: 100px;
-  height: 100px;
+  width: 96px;
+  height: 96px;
   border-radius: 20px;
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 8px 30px rgba(10,25,47,0.06);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
 }
-
 .z2-detail-hero-text {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
 }
-
 .z2-detail-tags {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
-
 .z2-detail-tag {
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 3px 10px;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
   border-radius: 100px;
-  border: 1px solid var(--border);
-  background: var(--surface);
+  border: 1px solid;
 }
-
 .z2-detail-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 32px;
-  font-weight: 900;
-  letter-spacing: -0.5px;
+  font-family: var(--heading);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--text-h);
   margin: 0;
+  line-height: 1.15;
 }
-
 .z2-detail-subtitle {
   font-size: 15px;
   color: var(--muted);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* ─── Detail Sections ──────────────────────── */
+/* ─── Sections ────────────────────────────────── */
 .z2-section {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  scroll-margin-top: 40px; /* Offset for smooth scroll */
+  gap: 18px;
+  scroll-margin-top: 48px;
 }
-
 .z2-section-label {
-  font-family: 'Outfit', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.z2-section-hint {
+  font-family: var(--sans);
   font-size: 11px;
-  color: #475569;
-  margin: -10px 0 0 0;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.z2-section-hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin: -10px 0 0;
 }
 
-.z2-section-card {
-  background: var(--surface-strong);
+/* ─── Problem Card ────────────────────────────── */
+.z2-problem-issue {
+  background: #fff;
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 36px 28px;
-  backdrop-filter: blur(10px);
+  overflow: hidden;
+  box-shadow: var(--shadow);
 }
-
-.z2-section-card--highlight {
-  border-left: 3px solid var(--accent, #6366f1);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.015) 0%, rgba(255, 255, 255, 0) 100%);
+.z2-problem-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border);
 }
-
-.z2-section-body {
+.z2-problem-filed {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.z2-problem-meta {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.z2-problem-body {
+  padding: 28px 28px 32px;
+}
+.z2-problem-lede {
+  margin: 0 0 20px;
+  padding-left: 20px;
+  border-left: 3px solid;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-h);
+  line-height: 1.5;
+  font-style: italic;
+}
+.z2-problem-full {
   font-size: 15px;
-  line-height: 1.8;
   color: var(--text);
+  line-height: 1.8;
   margin: 0;
 }
 
-/* ─── Innovative Team Orbit ─────────────────── */
+/* ─── Solution Card ───────────────────────────── */
+.z2-solution-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 36px 32px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.z2-solution-quote-mark {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  font-size: 120px;
+  font-weight: 900;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  font-family: Georgia, serif;
+}
+.z2-solution-text {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.8;
+  margin: 0 0 24px;
+  position: relative;
+  z-index: 1;
+}
+.z2-solution-rule {
+  height: 2px;
+  border-radius: 2px;
+}
+
+/* ─── Tech Chips ──────────────────────────────── */
+.z2-tech-scatter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+}
+.z2-tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-h);
+  transform: rotate(var(--chip-rotation, 0deg));
+  animation: slideUpFade 0.4s both;
+  animation-delay: var(--chip-delay, 0s);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+  cursor: default;
+}
+.z2-tech-chip:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: var(--shadow);
+}
+.z2-tech-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Team Orbit ──────────────────────────────── */
 .z2-team-orbit-wrapper {
   position: relative;
   display: flex;
@@ -203,42 +298,50 @@
   align-items: center;
   justify-content: center;
   padding: 28px 0 32px;
-  background: var(--surface-strong);
+  background: #fff;
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 20px;
   overflow: visible;
-  min-height: 280px;
+  min-height: 320px;
+  box-shadow: var(--shadow);
+}
+.z2-team-orbit-wrapper.paused .z2-orbit-ring,
+.z2-team-orbit-wrapper.paused .z2-orbit-member {
+  animation-play-state: paused;
+}
+
+/* FIXED: JSX uses z2-orbit-track not z2-orbit-ring for the circle */
+.z2-orbit-track {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed;
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .z2-orbit-center {
   position: absolute;
   z-index: 5;
-  width: 68px;
-  height: 68px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: var(--text-h);
-  border: 2px solid var(--accent);
+  border: 2px solid;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  gap: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-.z2-orbit-center-icon {
-  font-size: 18px;
-  color: var(--accent);
-}
-
 .z2-orbit-center-label {
-  font-family: 'Outfit', sans-serif;
-  font-size: 10px;
+  font-family: var(--sans);
+  font-size: 9px;
   font-weight: 800;
   text-transform: uppercase;
-  color: var(--accent);
-  letter-spacing: 0.4px;
+  letter-spacing: 0.5px;
 }
 
 .z2-orbit-ring {
@@ -252,13 +355,6 @@
   align-items: center;
   justify-content: center;
 }
-
-/* Pause both animations when parent wrapper is paused */
-.z2-team-orbit-wrapper.paused .z2-orbit-ring,
-.z2-team-orbit-wrapper.paused .z2-orbit-member {
-  animation-play-state: paused;
-}
-
 @keyframes rotateOrbit {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -266,20 +362,17 @@
 
 .z2-orbit-member {
   position: absolute;
-  /* Position absolute in center, then transform outwards based on angle */
   top: 50%;
   left: 50%;
-  margin-top: -20px;
-  margin-left: -20px;
+  margin-top: -22px;
+  margin-left: -22px;
   transform: rotate(var(--member-angle)) translate(var(--orbit-radius)) rotate(calc(-1 * var(--member-angle)));
   cursor: pointer;
   z-index: 4;
-  /* Always define the counterRotate animation */
   animation: counterRotate var(--orbit-duration) linear infinite;
 }
-
 @keyframes counterRotate {
-  from { transform: rotate(var(--member-angle)) translate(var(--orbit-radius)) rotate(calc(-1 * var(--member-angle) - 0deg)); }
+  from { transform: rotate(var(--member-angle)) translate(var(--orbit-radius)) rotate(calc(-1 * var(--member-angle))); }
   to   { transform: rotate(var(--member-angle)) translate(var(--orbit-radius)) rotate(calc(-1 * var(--member-angle) - 360deg)); }
 }
 
@@ -290,354 +383,219 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Outfit', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
-  color: var(--bg);
-  border: 2px solid rgba(10,25,47,0.12);
-  box-shadow: 0 4px 15px rgba(10,25,47,0.12);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
   transition: transform 0.25s, box-shadow 0.25s;
 }
-
 .z2-orbit-member:hover .z2-member-avatar {
-  transform: scale(1.15);
-  box-shadow: 0 0 20px var(--member-color), 0 4px 20px rgba(0,0,0,0.5);
+  transform: scale(1.18);
+  box-shadow: 0 0 18px var(--member-color, rgba(37, 99, 235, 0.4)), 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Tooltip on Member */
 .z2-member-tooltip {
   position: absolute;
-  bottom: 58px;
+  bottom: 56px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--text-h);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 12px;
+  border-radius: 10px;
+  padding: 8px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 130px;
-  box-shadow: 0 10px 25px rgba(10,25,47,0.18);
-  z-index: 10;
+  min-width: 120px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+  z-index: 20;
   pointer-events: none;
-  animation: fadeInTooltip 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  transform-origin: center bottom;
+  animation: fadeInTooltip 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
 @keyframes fadeInTooltip {
-  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
   to   { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
-
 .z2-tooltip-name {
   font-size: 12px;
   font-weight: 700;
-  color: var(--bg);
+  color: #fff;
   white-space: nowrap;
 }
-
 .z2-tooltip-role {
   font-size: 10px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.6);
   white-space: nowrap;
   margin-top: 2px;
 }
 
-/* Team list chips below the orbit (useful for accessibility / smaller viewports) */
+/* FIXED: JSX uses z2-team-chips-row, CSS had z2-team-list-below */
+.z2-team-chips-row,
 .z2-team-list-below {
-  position: relative;
-  bottom: 0;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 20px;
+  padding: 16px 20px 0;
+  position: relative;
+  z-index: 2;
 }
-
 .z2-team-chip {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--code-bg);
+  border: 1px solid;
   border-radius: 100px;
-  padding: 4px 12px;
+  padding: 5px 14px;
 }
-
 .z2-chip-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
+  flex-shrink: 0;
 }
-
 .z2-chip-name {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-h);
-}
-
-.z2-chip-role {
-  font-size: 10px;
-  color: var(--muted);
-}
-
-/* ─── Tech Stack Grid ──────────────────────── */
-.z2-tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
-}
-
-.z2-tech-scatter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-}
-
-.z2-tech-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  font-weight: 700;
-  font-size: 13px;
-  transform: rotate(var(--chip-rotation));
-  transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s;
-  animation: slideUpFade 0.4s both;
-}
-
-.z2-tech-chip:hover {
-  transform: rotate(0deg) translateY(-6px);
-  box-shadow: var(--shadow);
-}
-
-.z2-tech-item {
-  background: var(--surface-strong);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  animation: slideUpFade 0.4s cubic-bezier(0.16,1,0.3,1) both;
-}
-
-.z2-tech-item:hover {
-  border-color: var(--accent, #6366f1);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-}
-
-.z2-tech-num {
-  font-family: 'Outfit', sans-serif;
   font-size: 12px;
-  font-weight: 800;
-  color: var(--muted);
-}
-
-.z2-tech-item:hover .z2-tech-num {
-  color: var(--accent, #6366f1);
-}
-
-.z2-tech-name {
-  font-size: 15px;
   font-weight: 700;
   color: var(--text-h);
 }
-
-/* ─── Demo / QR Section ────────────────────── */
-.z2-demo-wrapper {
-  width: 100%;
+.z2-chip-role {
+  font-size: 11px;
+  color: var(--muted);
 }
 
+/* ─── Demo Section ────────────────────────────── */
+.z2-demo-wrapper { width: 100%; }
 .z2-demo-card {
   display: flex;
-  background: var(--surface-strong);
+  background: #fff;
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 40px 36px;
-  gap: 40px;
+  padding: 36px;
+  gap: 36px;
   align-items: center;
+  box-shadow: var(--shadow);
 }
-
 .z2-demo-qr-box {
   position: relative;
-  background: var(--surface);
-  border: none;
+  background: var(--code-bg);
   border-radius: 20px;
-  padding: 22px;
+  padding: 20px;
   flex-shrink: 0;
-  box-shadow: inset 0 0 0 1px var(--border), 0 8px 30px rgba(10,25,47,0.12);
+  box-shadow: inset 0 0 0 1px var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .z2-qr-corners span {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  border-color: var(--accent, #6366f1);
+  width: 12px;
+  height: 12px;
+  border-color: var(--accent);
   border-style: solid;
 }
-
-.z2-qr-corners span:nth-child(1) { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
-.z2-qr-corners span:nth-child(2) { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
-.z2-qr-corners span:nth-child(3) { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
-.z2-qr-corners span:nth-child(4) { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
-
+.z2-qr-corners span:nth-child(1) { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+.z2-qr-corners span:nth-child(2) { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+.z2-qr-corners span:nth-child(3) { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
+.z2-qr-corners span:nth-child(4) { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
 .z2-qr-inner {
-  width: 160px;
-  height: 160px;
-  background: var(--accent);
-  border: none;
+  width: 140px;
+  height: 140px;
   border-radius: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: var(--bg);
   font-weight: 700;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
-
-.z2-qr-icon {
-  font-size: 48px;
-  opacity: 1;
-  line-height: 1;
-}
-
+.z2-qr-icon { font-size: 44px; line-height: 1; }
 .z2-qr-label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--bg);
-  letter-spacing: 0.6px;
+  letter-spacing: 0.8px;
 }
-
-.z2-demo-info {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
+.z2-demo-info { display: flex; flex-direction: column; gap: 12px; }
 .z2-demo-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 20px;
+  font-family: var(--heading);
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-h);
   margin: 0;
 }
-
 .z2-demo-desc {
   font-size: 14px;
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 0;
 }
-
 .z2-demo-btn {
   width: fit-content;
-  background: var(--accent, #6366f1);
-  color: var(--bg);
   font-size: 13px;
   font-weight: 700;
-  padding: 10px 20px;
+  padding: 11px 22px;
   border-radius: 12px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
 }
-
 .z2-demo-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3),
-              0 0 15px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* ─── Responsive ───────────────────────────── */
+/* ─── Shared slide-up animation ───────────────── */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ──────────────────────────────── */
 @media (max-width: 900px) {
   .z2-detail {
     flex-direction: column;
-    padding: 24px 20px 60px;
-    gap: 32px;
+    padding: 24px 16px 60px;
+    gap: 24px;
   }
-
   .z2-section-nav {
     position: static;
     flex-direction: row;
     width: 100%;
+    min-width: 0;
     overflow-x: auto;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
     scrollbar-width: none;
   }
-  .z2-section-nav::-webkit-scrollbar {
-    display: none;
-  }
-
+  .z2-section-nav::-webkit-scrollbar { display: none; }
   .z2-sec-btn {
     white-space: nowrap;
-    padding: 10px 16px;
+    flex-direction: row;
+    padding: 8px 16px;
+    border-radius: 100px;
+    min-width: fit-content;
   }
-
-  .z2-sec-btn.active {
-    transform: none;
-  }
-
-  .z2-sec-btn-label {
-    display: none;
-  }
-
-  .z2-detail-scroll {
-    gap: 40px;
-  }
-
+  .z2-sec-btn.active { transform: none; }
+  .z2-sec-btn-label { font-size: 11px; letter-spacing: 0; text-transform: none; }
+  .z2-detail-scroll { gap: 40px; }
   .z2-detail-hero {
-    padding: 28px;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-
-  .z2-detail-hero-icon {
-    width: 80px;
-    height: 80px;
-    font-size: 48px;
-  }
-
-  .z2-team-orbit-wrapper {
-    height: auto;
-    padding: 40px 0 100px;
-  }
-
-  .z2-orbit-center {
-    width: 70px;
-    height: 70px;
-  }
-
-  .z2-orbit-center-icon {
-    font-size: 16px;
-  }
-
-  .z2-demo-card {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
     padding: 24px;
-    gap: 20px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
   }
-
-  .z2-demo-btn {
-    margin: 0 auto;
-  }
+  .z2-detail-hero-icon { width: 72px; height: 72px; font-size: 42px; }
+  .z2-detail-tags { justify-content: center; }
+  .z2-demo-card { flex-direction: column; text-align: center; align-items: center; padding: 24px; gap: 20px; }
+  .z2-demo-btn { margin: 0 auto; }
+  .z2-team-orbit-wrapper { min-height: 280px; padding: 20px 0 80px; }
 }
