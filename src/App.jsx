@@ -8,6 +8,7 @@ import TechnologyPage from "./components/zones/Zone3/Technologypage";
 import LabPage from "./components/zones/Zone3/LabPage";
 import Zone4 from "./components/zones/Zone4/Zone4";
 import Zone5 from "./components/zones/Zone5/Zone5";
+import FloatingChatbot from "./components/chatbot/FloatingChatbot";
 
 import "./App.css";
 
@@ -107,6 +108,8 @@ export default function App() {
             <Route path="/zone5" element={<Zone5 />} />
           </Routes>
         </div>
+
+        <FloatingChatbot />
       </div>
     </Router>
   );

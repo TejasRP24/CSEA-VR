@@ -223,6 +223,334 @@
         Back to Home Page
     </a>
 
+    <!-- Floating Chatbot Button -->
+    <style>
+        .sc-chat-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(59,130,246,0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1.3rem;
+        }
+        .sc-chat-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 40px rgba(59,130,246,0.6);
+        }
+        .sc-chat-btn:active {
+            transform: scale(0.92);
+        }
+
+        .sc-chat-window {
+            position: fixed;
+            bottom: 92px;
+            right: 24px;
+            z-index: 9999;
+            width: 420px;
+            max-width: calc(100vw - 48px);
+            height: 600px;
+            max-height: calc(100vh - 140px);
+            background: rgba(2, 6, 23, 0.55);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px) scale(0.93);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            overflow: hidden;
+        }
+        .sc-chat-window.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .sc-chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            flex-shrink: 0;
+        }
+        .sc-chat-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .sc-chat-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(59,130,246,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .sc-chat-header h3 {
+            margin: 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .sc-chat-status {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: rgba(59,130,246,0.8);
+        }
+        .sc-chat-close {
+            background: rgba(255,255,255,0.05);
+            border: none;
+            color: rgba(255,255,255,0.6);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .sc-chat-close:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+
+        .sc-chat-body {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sc-chat-body::-webkit-scrollbar { width: 5px; }
+        .sc-chat-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 5px; }
+
+        .sc-msg {
+            max-width: 80%;
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            animation: scPopIn 0.25s ease;
+        }
+        @keyframes scPopIn {
+            0% { opacity: 0; transform: scale(0.9) translateY(8px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .sc-msg-bot {
+            align-self: flex-start;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.05);
+            color: #fff;
+            border-bottom-left-radius: 4px;
+        }
+        .sc-msg-user {
+            align-self: flex-end;
+            background: #3b82f6;
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+        .sc-msg-time {
+            display: block;
+            margin-top: 4px;
+            font-size: 0.6rem;
+            opacity: 0.5;
+            letter-spacing: 0.3px;
+        }
+
+        .sc-quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .sc-quick-reply {
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.8);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .sc-quick-reply:hover {
+            background: rgba(59,130,246,0.2);
+            border-color: rgba(59,130,246,0.4);
+            color: #fff;
+        }
+
+        .sc-chat-footer {
+            padding: 12px 16px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+            background: transparent;
+        }
+        .sc-chat-input {
+            flex: 1;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 10px 16px;
+            color: #fff;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .sc-chat-input:focus {
+            border-color: #3b82f6;
+        }
+        .sc-chat-input::placeholder {
+            color: rgba(255,255,255,0.35);
+        }
+        .sc-chat-send {
+            background: #3b82f6;
+            border: none;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+        .sc-chat-send:hover {
+            background: #2563eb;
+        }
+        .sc-chat-send:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+    </style>
+
+    <button class="sc-chat-btn" id="sc-chat-btn" aria-label="Open chat">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </button>
+
+    <div class="sc-chat-window" id="sc-chat-window">
+        <div class="sc-chat-header">
+            <div class="sc-chat-header-left">
+                <div class="sc-chat-avatar">🤖</div>
+                <div>
+                    <h3>CSEA Bot</h3>
+                    <span class="sc-chat-status">Online</span>
+                </div>
+            </div>
+            <button class="sc-chat-close" id="sc-chat-close" aria-label="Close chat">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div class="sc-chat-body" id="sc-chat-body">
+            <div class="sc-msg sc-msg-bot">👋 Hey there! Welcome to the CSEA AR/VR Club. How can I help you today?</div>
+            <div class="sc-msg sc-msg-bot">You can ask me about our VR zones, upcoming events, projects, or anything AR/VR related!</div>
+            <div class="sc-quick-replies">
+                <button class="sc-quick-reply" data-reply="Tell me about the VR zones">Tell me about the VR zones</button>
+                <button class="sc-quick-reply" data-reply="Upcoming events">Upcoming events</button>
+                <button class="sc-quick-reply" data-reply="Club projects">Club projects</button>
+                <button class="sc-quick-reply" data-reply="How to join?">How to join?</button>
+            </div>
+        </div>
+        <div class="sc-chat-footer">
+            <input type="text" class="sc-chat-input" id="sc-chat-input" placeholder="Type a message..." autocomplete="off">
+            <button class="sc-chat-send" id="sc-chat-send" aria-label="Send message">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const btn = document.getElementById('sc-chat-btn');
+            const window_ = document.getElementById('sc-chat-window');
+            const close = document.getElementById('sc-chat-close');
+            const body = document.getElementById('sc-chat-body');
+            const input = document.getElementById('sc-chat-input');
+            const send = document.getElementById('sc-chat-send');
+
+            const quickBtns = document.querySelectorAll('.sc-quick-reply');
+            let isOpen = false;
+
+            function toggle() {
+                isOpen = !isOpen;
+                window_.classList.toggle('active', isOpen);
+                btn.innerHTML = isOpen
+                    ? '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+                    : '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+                if (isOpen) input.focus();
+            }
+
+            btn.addEventListener('click', toggle);
+            close.addEventListener('click', toggle);
+
+            function addMsg(text, sender) {
+                const div = document.createElement('div');
+                div.className = 'sc-msg sc-msg-' + sender;
+                div.innerHTML = text + '<span class="sc-msg-time">' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) + '</span>';
+                body.appendChild(div);
+                body.scrollTop = body.scrollHeight;
+            }
+
+            function handleSend(text) {
+                const msg = (text || input.value).trim();
+                if (!msg) return;
+                addMsg(msg, 'user');
+                input.value = '';
+                const apiUrl = 'http://localhost:3001';
+                fetch(apiUrl + '/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg })
+                })
+                .then(r => r.json())
+                .then(data => {
+                    addMsg(data.reply || "Sorry, I couldn't process that.", 'bot');
+                })
+                .catch(() => {
+                    addMsg("Oops! Couldn't reach the server. Make sure the backend is running on port 3001.", 'bot');
+                });
+                if (body.querySelector('.sc-quick-replies')) {
+                    const qr = body.querySelector('.sc-quick-replies');
+                    qr.remove();
+                }
+            }
+
+            send.addEventListener('click', () => handleSend());
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); handleSend(); }
+            });
+
+            quickBtns.forEach(b => {
+                b.addEventListener('click', () => handleSend(b.getAttribute('data-reply')));
+            });
+        })();
+    </script>
     <script src="app.js"></script>
     <script>
         
