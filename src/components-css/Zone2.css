@@ -1,20 +1,23 @@
-
+/* =============================================
+   Zone2.css — Gallery Home + Category Pages
+   Palette: Warm Cream · Sage · Dusty Blue ·
+            Terracotta · Mustard · Charcoal
+   ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
-
+/* ── Root ──────────────────────────────────── */
 .z2-root {
   min-height: 100vh;
-  width: 100vw;
-  max-width: 100%;
+  width: 100%;
   background: var(--bg);
-  font-family: var(--sans);
+  font-family: 'DM Sans', system-ui, sans-serif;
   color: var(--text);
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   box-sizing: border-box;
 }
 
-
+/* ── Animation ─────────────────────────────── */
 .slide-up {
   animation: slideUpFade 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -23,7 +26,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-
+/* ── Breadcrumb ────────────────────────────── */
 .z2-breadcrumb {
   display: flex;
   align-items: center;
@@ -49,14 +52,16 @@
 .z2-bc-sep { color: var(--border); }
 .z2-bc-current { color: var(--text-h); font-weight: 600; }
 
-
+/* =============================================
+   HOME PAGE
+   ============================================= */
 .z2-home {
   padding: 48px 40px 64px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-
+/* ── Hero ──────────────────────────────────── */
 .z2-hero {
   margin-bottom: 72px;
 }
@@ -93,7 +98,7 @@
   max-width: 480px;
 }
 
-
+/* ── Category Grid ─────────────────────────── */
 .z2-categories-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -109,31 +114,27 @@
   animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .z2-cat-card-inner {
-  background: var(--surface);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: var(--glass-border);
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-left: 5px solid var(--accent);
   border-radius: 18px;
   padding: 36px 32px 28px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  box-shadow: var(--glass-shadow);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s, border-color 0.4s;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  width: 100%;
 }
 .z2-cat-card:hover .z2-cat-card-inner {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 50px rgba(139, 92, 246, 0.15);
-  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(44, 39, 32, 0.12);
 }
 
-
+/* Background decorative number */
 .z2-cat-number {
   font-family: 'Playfair Display', serif;
   font-size: 120px;
@@ -208,7 +209,9 @@
 .z2-cat-arrow { transition: transform 0.25s; }
 .z2-cat-card:hover .z2-cat-arrow { transform: translateX(6px); }
 
-
+/* =============================================
+   CATEGORY PAGE
+   ============================================= */
 .z2-catpage {
   padding: 28px 36px 64px;
   max-width: 1100px;
@@ -260,7 +263,7 @@
   margin: 0;
 }
 
-
+/* ── Project List Rows ─────────────────────── */
 .z2-project-list {
   display: flex;
   flex-direction: column;
@@ -268,11 +271,8 @@
 }
 .z2-proj-row {
   width: 100%;
-  max-width: 100%;
-  background: var(--surface);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: var(--glass-border);
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-left: 4px solid transparent;
   border-radius: 14px;
   padding: 20px 18px;
@@ -282,17 +282,16 @@
   justify-content: space-between;
   gap: 16px;
   text-align: left;
-  font-family: var(--sans);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-  box-shadow: var(--glass-shadow);
+  box-shadow: 0 1px 6px rgba(10,25,47,0.04);
   box-sizing: border-box;
 }
 .z2-proj-row:hover {
-  background: var(--surface-hover);
   border-left-color: var(--accent);
-  transform: translateX(6px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  transform: translateX(4px);
+  box-shadow: 0 8px 28px rgba(10,25,47,0.08);
 }
 
 .z2-proj-row-left {
@@ -355,7 +354,7 @@
   color: var(--accent, #6B9B6D);
 }
 
-
+/* ── Responsive ────────────────────────────── */
 @media (max-width: 900px) {
   .z2-home         { padding: 44px 24px 56px; }
   .z2-catpage      { padding: 28px 20px 56px; }

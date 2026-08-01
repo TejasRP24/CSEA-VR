@@ -1,6 +1,8 @@
+/* =============================================
+   Zone2Detail.css — Project Detail Layout
+   ============================================= */
 
-
-
+/* ─── Detail Page Container ─────────────────── */
 .z2-detail {
   position: relative;
 .z2-detail {
@@ -15,7 +17,7 @@
 }
 }
 
-
+/* ─── Sticky Left Nav Section Navigator ─────── */
 .z2-section-nav {
   position: sticky;
   top: 100px;
@@ -64,16 +66,16 @@
   font-size: 16px;
 }
 
-
+/* ─── Right Scroll Container ───────────────── */
 .z2-detail-scroll {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 64px;
-  min-width: 0; 
+  min-width: 0; /* Prevents overflow */
 }
 
-
+/* ─── Hero Banner ──────────────────────────── */
 .z2-detail-hero {
   position: relative;
   background: var(--surface-strong);
@@ -150,12 +152,12 @@
   line-height: 1.5;
 }
 
-
+/* ─── Detail Sections ──────────────────────── */
 .z2-section {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  scroll-margin-top: 40px; 
+  scroll-margin-top: 40px; /* Offset for smooth scroll */
 }
 
 .z2-section-label {
@@ -174,13 +176,11 @@
 }
 
 .z2-section-card {
-  background: var(--surface);
+  background: var(--surface-strong);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 36px 28px;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
 }
 
 .z2-section-card--highlight {
@@ -195,7 +195,7 @@
   margin: 0;
 }
 
-
+/* ─── Innovative Team Orbit ─────────────────── */
 .z2-team-orbit-wrapper {
   position: relative;
   display: flex;
@@ -203,9 +203,7 @@
   align-items: center;
   justify-content: center;
   padding: 28px 0 32px;
-  background: var(--surface);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: var(--surface-strong);
   border: 1px solid var(--border);
   border-radius: 18px;
   overflow: visible;
@@ -255,7 +253,7 @@
   justify-content: center;
 }
 
-
+/* Pause both animations when parent wrapper is paused */
 .z2-team-orbit-wrapper.paused .z2-orbit-ring,
 .z2-team-orbit-wrapper.paused .z2-orbit-member {
   animation-play-state: paused;
@@ -268,7 +266,7 @@
 
 .z2-orbit-member {
   position: absolute;
-  
+  /* Position absolute in center, then transform outwards based on angle */
   top: 50%;
   left: 50%;
   margin-top: -20px;
@@ -276,7 +274,7 @@
   transform: rotate(var(--member-angle)) translate(var(--orbit-radius)) rotate(calc(-1 * var(--member-angle)));
   cursor: pointer;
   z-index: 4;
-  
+  /* Always define the counterRotate animation */
   animation: counterRotate var(--orbit-duration) linear infinite;
 }
 
@@ -306,7 +304,7 @@
   box-shadow: 0 0 20px var(--member-color), 0 4px 20px rgba(0,0,0,0.5);
 }
 
-
+/* Tooltip on Member */
 .z2-member-tooltip {
   position: absolute;
   bottom: 58px;
@@ -346,7 +344,7 @@
   margin-top: 2px;
 }
 
-
+/* Team list chips below the orbit (useful for accessibility / smaller viewports) */
 .z2-team-list-below {
   position: relative;
   bottom: 0;
@@ -384,7 +382,7 @@
   color: var(--muted);
 }
 
-
+/* ─── Tech Stack Grid ──────────────────────── */
 .z2-tech-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -453,7 +451,7 @@
   color: var(--text-h);
 }
 
-
+/* ─── Demo / QR Section ────────────────────── */
 .z2-demo-wrapper {
   width: 100%;
 }
@@ -567,7 +565,7 @@
               0 0 15px rgba(99, 102, 241, 0.3);
 }
 
-
+/* ─── Responsive ───────────────────────────── */
 @media (max-width: 900px) {
   .z2-detail {
     flex-direction: column;
