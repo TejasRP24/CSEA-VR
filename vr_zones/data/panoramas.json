@@ -1,0 +1,112 @@
+{
+  "panoramas": [
+    {
+      "id": "cs_corridor_2",
+      "name": "CSE Department Entrance",
+      "building": "Main Block",
+      "floor": "Floor 2",
+      "image": "./panoramas/cs2.jpg",
+      "x": 35,
+      "y": 55,
+      "hFov": 190,
+      "defaultView": {
+        "yaw": 0.5,
+        "pitch": -0.05,
+        "fov": 1.2
+      },
+      "description": "The entrance lobby of the Computer Science & Engineering department, leading into classrooms, lab facilities, and faculty offices.",
+      "connections": [
+        {
+          "target": "cs_corridor_1",
+          "yaw": -0.7,
+          "pitch": -0.05,
+          "label": "Enter CSE Labs Corridor"
+        }
+      ]
+    },
+    {
+      "id": "cs_corridor_1",
+      "name": "CSE Research Labs Corridor",
+      "building": "Main Block",
+      "floor": "Floor 2",
+      "image": "./panoramas/cs1.jpg",
+      "x": 65,
+      "y": 55,
+      "hFov": 190,
+      "defaultView": {
+        "yaw": -1.2,
+        "pitch": -0.02,
+        "fov": 1.2
+      },
+      "description": "A long interior hallway lined with advanced computer laboratories, student project spaces, and research banners.",
+      "connections": [
+        {
+          "target": "cs_corridor_2",
+          "yaw": 1.8,
+          "pitch": -0.08,
+          "label": "Go to Main Entrance"
+        },
+        {
+          "target": "cs_room_1",
+          "yaw": 0.5,
+          "pitch": -0.05,
+          "label": "Enter Cubicle Room"
+        }
+      ]
+    },
+    {
+      "id": "cs_room_1",
+      "name": "CSE Cubicle Room 1",
+      "building": "Main Block",
+      "floor": "Floor 2",
+      "image": "./panoramas/cs_room_1.jpg",
+      "x": 80,
+      "y": 55,
+      "hFov": 190,
+      "defaultView": {
+        "yaw": 0,
+        "pitch": 0,
+        "fov": 1.2
+      },
+      "description": "Interior workspace cubicles for faculty and researchers.",
+      "connections": [
+        {
+          "target": "cs_corridor_1",
+          "yaw": -1.0,
+          "pitch": 0,
+          "label": "Exit to Corridor"
+        },
+        {
+          "target": "cs_room_2",
+          "yaw": 1.0,
+          "pitch": 0,
+          "label": "Go deeper inside"
+        }
+      ]
+    },
+    {
+      "id": "cs_room_2",
+      "name": "CSE Cubicle Room 2",
+      "building": "Main Block",
+      "floor": "Floor 2",
+      "image": "./panoramas/cs_room_2.jpg",
+      "x": 95,
+      "y": 55,
+      "hFov": 190,
+      "defaultView": {
+        "yaw": 0,
+        "pitch": 0,
+        "fov": 1.2
+      },
+      "description": "Further inside the workspace cubicles.",
+      "connections": [
+        {
+          "target": "cs_room_1",
+          "yaw": -1.0,
+          "pitch": 0,
+          "label": "Go back"
+        }
+      ]
+    }
+  ]
+}

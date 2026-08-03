@@ -126,3 +126,118 @@
   border-top: 1px solid var(--border);
 }
 @media (max-width: 1024px) { #spacer { height: 48px; } }
+
+/* ===================================================================
+   360° VR Tour Styles
+   =================================================================== */
+
+/* Centering Marzipano Hotspots */
+.nav-hotspot-container {
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+/* Hotspot Design */
+.nav-hotspot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Floating animation on the arrow wrapper */
+.nav-arrow-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.75);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(37, 99, 235, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: float 2.5s ease-in-out infinite;
+}
+
+/* Hotspot hover styles */
+.nav-hotspot:hover .nav-arrow-wrapper {
+  background: #2563eb;
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.5), 0 0 0 6px rgba(37, 99, 235, 0.4);
+  transform: scale(1.12);
+  animation-play-state: paused;
+}
+
+/* The SVG arrow styling */
+.nav-arrow {
+  width: 20px;
+  height: 20px;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+/* Animated floating keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Tooltip container */
+.nav-tooltip {
+  position: absolute;
+  bottom: 56px;
+  background: rgba(15, 23, 42, 0.95);
+  color: #f8fafc;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Show tooltip on hover */
+.nav-hotspot:hover .nav-tooltip {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Custom Scrollbar for Sidebar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animation classes */
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+

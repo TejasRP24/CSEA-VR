@@ -9,6 +9,7 @@ import LabPage from "./components/zones/Zone3/LabPage";
 import Zone4 from "./components/zones/Zone4/Zone4";
 import Zone5 from "./components/zones/Zone5/Zone5";
 import FloatingChatbot from "./components/chatbot/FloatingChatbot";
+import VirtualTour from "./components/virtual-tour/VirtualTour";
 
 import "./App.css";
 
@@ -61,6 +62,10 @@ export default function App() {
               onMouseOver={e=>{e.target.style.color='#0f172a';e.target.style.background='rgba(37,99,235,0.1)';e.target.style.boxShadow='0 0 15px rgba(37,99,235,0.15)'}}
               onMouseOut={e=>{e.target.style.color='#64748b';e.target.style.background='transparent';e.target.style.boxShadow='none'}}
             >Industry Connect</Link>
+            <Link to="/tour" style={{padding:'8px 18px', borderRadius:'10px', fontSize:'0.78rem', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.05em', transition:'all 0.3s', color:'#64748b', textDecoration:'none', display:'inline-block'}}
+              onMouseOver={e=>{e.target.style.color='#0f172a';e.target.style.background='rgba(37,99,235,0.1)';e.target.style.boxShadow='0 0 15px rgba(37,99,235,0.15)'}}
+              onMouseOut={e=>{e.target.style.color='#64748b';e.target.style.background='transparent';e.target.style.boxShadow='none'}}
+            >360° VR Tour</Link>
           </div>
 
           <a href="index.html" style={{
@@ -86,6 +91,8 @@ export default function App() {
             <Route path="/technology/:slug/lab/:labId" element={<LabPage />} />
             <Route path="/zone4" element={<Zone4 />} />
             <Route path="/zone5" element={<Zone5 />} />
+            <Route path="/tour" element={<VirtualTour />} />
+            <Route path="/tour/:panoramaId" element={<VirtualTour />} />
           </Routes>
         </div>
 

@@ -10,6 +10,7 @@ export default defineConfig({
     tailwindcss(),
   ],
   build: {
+    outDir: 'vr_zones',
     rollupOptions: {
       input: {
         main: './index.html',
