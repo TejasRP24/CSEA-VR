@@ -19,6 +19,8 @@ export const PROJECTS_DATA = {
         { input: 'Banana Peel', output: 'Organic Compartment Activated', badge: 'CNN Image Model' },
         { input: 'Lithium Battery', output: 'Hazardous Compartment Activated', badge: 'Chemical Warning Sensor' },
       ],
+      // Add images/videos here: { type: 'image'|'video', src: '/media/...', poster?: '...', caption?: '...' }
+      media: [],
     },
     {
       name: 'IoT Smart Plant Waterer',
@@ -38,6 +40,7 @@ export const PROJECTS_DATA = {
         { input: 'Dry Soil (Moisture 15%)', output: 'Pump Relay Enabled (Watering for 5s)', badge: 'Analog Moisture Pin' },
         { input: 'Wet Soil (Moisture 85%)', output: 'Pump Idle (Adequate Water levels)', badge: 'Saturate Indicator' },
       ],
+      media: [],
     },
     {
       name: 'Campus Energy Monitor',
@@ -57,47 +60,50 @@ export const PROJECTS_DATA = {
         { input: 'Peak Afternoon Lecture Block', output: 'Alert: High AC usage flagged (Auto Setback applied)', badge: 'MQTT Broker Node' },
         { input: 'Mid-Night Downtime Scan', output: 'No-waste steady stream (3.2 kW background)', badge: 'Admin Threshold' },
       ],
+      media: [],
     },
   ],
   'mini': [
     {
-      name: 'Smart Campus Navigator',
-      icon: '🧭',
-      year: '2024',
-      tags: ['AR', 'Mobile', 'Unity'],
-      shortDesc: 'AR-based indoor navigation for campus buildings.',
-      problemStatement: 'Students and visitors frequently get lost while trying to find specific laboratories or classrooms in large, complex campus buildings.',
-      solutionOverview: 'An interactive AR-based mobile application that helps individuals navigate indoor campus environments seamlessly using smartphone cameras and pre-mapped floor plans.',
-      techStack: ['Unity', 'AR Foundation', 'C#', 'React Native', 'Node.js', 'Firebase'],
+      name: 'SMARTAPPROVE – AI Document Approval System',
+      icon: '⚡',
+      year: '2026',
+      tags: ['Agentic AI', 'LangGraph', 'Gemini', 'Django', 'React (Vite)', 'Workflows'],
+      shortDesc: 'Agentic AI platform digitizing & validating academic approvals with multi-agent workflows.',
+      problemStatement: 'Manual academic approvals for bonafide certificates and internships are paper-heavy, slow, and inconsistent. ERPs lack document intelligence to automatically extract details, check policies, or route requests.',
+      solutionOverview: 'SMARTAPPROVE is an Agentic AI-based workflow automation platform. AI agents automatically extract information from document uploads, validate them against institutional policies with explainable feedback, and route requests through a stateful multi-stage approval hierarchy with human-in-the-loop oversight.',
+      techStack: ['React (Vite)', 'Django', 'LangGraph', 'Google Gemini', 'PostgreSQL / SQLite', 'REST APIs'],
       teamMembers: [
-        { name: 'Alice Johnson', role: 'AR Developer', initials: 'AJ', color: '#6366f1' },
-        { name: 'Bob Smith', role: 'Backend Dev', initials: 'BS', color: '#10b981' },
+        { name: 'Abinaya S', role: 'AI & Data Lead', initials: 'AS', color: '#6366f1' },
+        { name: 'Chandrakanth R M', role: 'Backend & Workflow Dev', initials: 'CR', color: '#10b981' },
+        { name: 'Manish V', role: 'Full-Stack Developer', initials: 'MV', color: '#f59e0b' },
+        { name: 'Ponmanoj P', role: 'Agent Architecture Lead', initials: 'PP', color: '#ec4899' },
+        { name: 'Sneha Rajesh', role: 'Frontend & UI/UX', initials: 'SR', color: '#06b6d4' },
       ],
       demoLink: 'https://example.com',
       simulatedPayloads: [
-        { input: 'Scan Main Archway', output: 'AR Arrow locked to Lab Block F3 (35m forward)', badge: 'AR Anchors Engine' },
-        { input: 'Rotate Camera Rightward', output: 'Tag Discovered: CSE Seminar Library', badge: 'Spatial Map Pin' },
+        { input: 'Bonafide PDF Certificate Upload', output: 'Extraction Agent: Name, Roll No, Dept & Reason extracted (94% Accuracy)', badge: 'PyMuPDF + LLM' },
+        { input: 'Audit Agent Policy Check', output: 'Passed: Valid passport purpose & signature verified', badge: 'LangGraph Multi-Agent' },
+        { input: 'Stateful Workflow Route', output: 'Routed: Tutor Approved → Program Co-ordinator In Review', badge: 'Stateful RBAC' },
+      ],
+      media: [
+        {
+          type: 'image',
+          src: '/images/smartapprove/architecture_poster.jpg',
+          caption: 'SmartApprove Poster: System Architecture, Multi-Agent Pipeline & Evaluation Metrics (94% Accuracy, 90% Admin Time Saved)',
+        },
+        {
+          type: 'image',
+          src: '/images/smartapprove/request_modal.jpg',
+          caption: 'Incoming Request Validation Modal: AI extraction checklist, document matching & explainable feedback',
+        },
+        {
+          type: 'image',
+          src: '/images/smartapprove/approval_chain.jpg',
+          caption: 'Student Request Dashboard: Real-time Multi-Stage Approval Chain tracking (Tutor → Program Co-ord → HOD → Office → Dean)',
+        },
       ],
     },
-    {
-      name: 'Sign2Text Translator',
-      icon: '🧤',
-      year: '2024',
-      tags: ['Wearable', 'ML', 'Accessibility'],
-      shortDesc: 'Glove that translates sign language to text in real-time.',
-      problemStatement: 'There is a significant communication barrier between sign language users and non-users in everyday interactions, isolating the hearing-impaired community.',
-      solutionOverview: 'A wearable glove equipped with flex sensors and accelerometers that translates ASL hand signs into text and speech in real-time via Bluetooth to a mobile app.',
-      techStack: ['Arduino', 'Bluetooth LE', 'Flutter', 'Firebase', 'TensorFlow', 'Python'],
-      teamMembers: [
-        { name: 'Paul Vance', role: 'Hardware Lead', initials: 'PV', color: '#ec4899' },
-        { name: 'Quinn Ahn', role: 'ML Engineer', initials: 'QA', color: '#06b6d4' },
-      ],
-      demoLink: 'https://example.com',
-      simulatedPayloads: [
-        { input: 'Flex Flex Sensor A & B', output: 'Token Translated: "GOOD MORNING"', badge: 'Bluetooth App Rx' },
-        { input: 'Full Fist Position (All Flex)', output: 'Token Translated: "THANK YOU"', badge: 'TF-Lite Matrix' },
-      ],
-    }
   ],
   'capstone': [
     {
@@ -118,6 +124,7 @@ export const PROJECTS_DATA = {
         { input: 'Scan Sector 4 (Maize crop)', output: 'Early Stage Anthracnose risk detected (Score 84%)', badge: 'Drone CNN Inference' },
         { input: 'Crop Leaf Sample #419', output: 'Healthy chlorophyll indices logged', badge: 'RGB Index' },
       ],
+      media: [],
     },
     {
       name: 'Decentralized Voting System',
@@ -137,6 +144,7 @@ export const PROJECTS_DATA = {
         { input: 'Submit Ballot ID #3911', output: 'Ballot verified. Block Hash: 0x5a18c... added', badge: 'Solidity Contract' },
         { input: 'Check Ballot Status', output: 'Ballot Status: Complete. Immutable hash locked.', badge: 'MetaMask Gateway' },
       ],
+      media: [],
     },
   ],
   'hackathon': [
@@ -158,6 +166,7 @@ export const PROJECTS_DATA = {
         { input: 'Broadcast SOS Beacon', output: 'Beacon caught by Node 3 (Distance 12m). Added to Grid', badge: 'BLE Hardware Mesh' },
         { input: 'Pull Offline Maps Sync', output: 'Synchronized local mapping coordinates successfully', badge: 'SQLite Offline Db' },
       ],
+      media: [],
     },
   ],
 };

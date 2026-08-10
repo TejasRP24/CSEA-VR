@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import '../../../components-css/Zone2.css';
 import CategoryPage from './CategoryPage';
 import ProjectDetail from './ProjectDetail';
+import { PROJECTS_DATA } from './ProjectsData';
 
 const CATEGORIES = [
   {
     id: 'first-year',
-    number: '01',
+    number: '1',
     name: 'First-Year Projects',
     tagline: 'Where curiosity meets engineering',
     description:
@@ -18,19 +19,19 @@ const CATEGORIES = [
   },
   {
     id: 'mini',
-    number: '02',
+    number: '2',
     name: 'Mini Projects',
     tagline: 'Domain-specific applied solutions',
     description:
       'Focused problem-solving initiatives spanning IoT, AI, web platforms, and embedded systems built by second-year teams.',
-    count: '35+',
+    count: '1',
     icon: '⚡',
     accentColor: '#6289A8',
     lightColor:  '#E4EEF5',
   },
   {
     id: 'capstone',
-    number: '03',
+    number: '3',
     name: 'Capstone Projects',
     tagline: 'Industry-grade end-to-end systems',
     description:
@@ -42,7 +43,7 @@ const CATEGORIES = [
   },
   {
     id: 'hackathon',
-    number: '04',
+    number: '4',
     name: 'Hackathon Winners',
     tagline: 'National & international champions',
     description:
@@ -58,8 +59,6 @@ const sanitizeIcon = (icon) => {
   if (!icon) return '';
   return String(icon).replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{26FF}]/gu, '') || '';
 };
-
-
 
 const Zone2 = () => {
   const [view, setView] = useState('home');
@@ -89,6 +88,13 @@ const Zone2 = () => {
 
   return (
     <div className="z2-root">
+
+      {/* ── Background mesh blobs ── */}
+      <div className="z2-bg-blobs" aria-hidden="true">
+        <div className="z2-blob z2-blob-1" />
+        <div className="z2-blob z2-blob-2" />
+        <div className="z2-blob z2-blob-3" />
+      </div>
 
       {/* Breadcrumb */}
       {view !== 'home' && (
@@ -129,6 +135,22 @@ const Zone2 = () => {
               Four tracks. Hundreds of ideas. Explore groundbreaking projects built by students
               who refused to wait to change the world.
             </p>
+            <div className="z2-hero-stats">
+              <div className="z2-hero-stat">
+                <span className="z2-hero-stat-num">86+</span>
+                <span className="z2-hero-stat-label">Projects</span>
+              </div>
+              <div className="z2-hero-stat-div" />
+              <div className="z2-hero-stat">
+                <span className="z2-hero-stat-num">4</span>
+                <span className="z2-hero-stat-label">Tracks</span>
+              </div>
+              <div className="z2-hero-stat-div" />
+              <div className="z2-hero-stat">
+                <span className="z2-hero-stat-num">200+</span>
+                <span className="z2-hero-stat-label">Students</span>
+              </div>
+            </div>
           </div>
 
           <div className="z2-categories-grid">
@@ -144,9 +166,14 @@ const Zone2 = () => {
                 onClick={() => handleCategoryClick(cat)}
               >
                 <div className="z2-cat-card-inner">
+                  {/* Glow blob */}
+                  <div className="z2-cat-glow" style={{ background: cat.accentColor }} />
+
                   <div className="z2-cat-top">
                     <span className="z2-cat-icon">{sanitizeIcon(cat.icon)}</span>
-                    <span className="z2-cat-count">{cat.count} projects</span>
+                    <span className="z2-cat-count">
+                      {PROJECTS_DATA[cat.id]?.length ? `${PROJECTS_DATA[cat.id].length}` : cat.count} project{PROJECTS_DATA[cat.id]?.length === 1 ? '' : 's'}
+                    </span>
                   </div>
                   <div className="z2-cat-body">
                     <span className="z2-cat-number">{cat.number}</span>

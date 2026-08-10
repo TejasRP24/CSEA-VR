@@ -4,7 +4,6 @@
    ============================================= */
 
 /* ─── Detail Page Container ─────────────────── */
-/* FIXED: was split into two invalid nested rules */
 .z2-detail {
   position: relative;
   z-index: 2;
@@ -33,7 +32,8 @@
 }
 
 .z2-sec-btn {
-  background: #fff;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 10px 8px;
@@ -59,7 +59,7 @@
 .z2-sec-btn.active {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;           /* FIXED: was var(--bg) which could be transparent/light */
+  color: #fff;
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
   transform: translateX(6px);
 }
@@ -86,17 +86,18 @@
 /* ─── Hero Banner ─────────────────────────────── */
 .z2-detail-hero {
   position: relative;
-  background: #fff;
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.9);
   border-radius: 24px;
   padding: 36px 40px;
   display: flex;
   gap: 24px;
   align-items: center;
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 24px rgba(10, 25, 47, 0.08);
 }
-/* Left accent stripe — FIXED: was z2-detail-hero-accent, JSX uses z2-detail-hero-stripe */
 .z2-detail-hero-stripe,
 .z2-detail-hero-accent {
   position: absolute;
@@ -104,6 +105,7 @@
   left: 0;
   width: 5px;
   height: 100%;
+  border-radius: 4px 0 0 4px;
 }
 
 .z2-detail-hero-icon {
@@ -123,6 +125,7 @@
   flex-direction: column;
   gap: 10px;
   min-width: 0;
+  flex: 1;
 }
 .z2-detail-tags {
   display: flex;
@@ -153,6 +156,18 @@
   margin: 0;
   line-height: 1.6;
 }
+/* Media count pill in hero */
+.z2-detail-media-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
 
 /* ─── Sections ────────────────────────────────── */
 .z2-section {
@@ -177,7 +192,8 @@
 
 /* ─── Problem Card ────────────────────────────── */
 .z2-problem-issue {
-  background: #fff;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 20px;
   overflow: hidden;
@@ -224,7 +240,8 @@
 /* ─── Solution Card ───────────────────────────── */
 .z2-solution-card {
   position: relative;
-  background: #fff;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 36px 36px 32px;
@@ -278,6 +295,7 @@
   animation-delay: var(--chip-delay, 0s);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
   cursor: default;
+  backdrop-filter: blur(8px);
 }
 .z2-tech-chip:hover {
   transform: rotate(0deg) translateY(-4px);
@@ -297,12 +315,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 28px 0 32px;
-  background: #fff;
+  padding: 32px 20px;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 20px;
   overflow: visible;
-  min-height: 320px;
   box-shadow: var(--shadow);
 }
 .z2-team-orbit-wrapper.paused .z2-orbit-ring,
@@ -310,9 +328,19 @@
   animation-play-state: paused;
 }
 
-/* FIXED: JSX uses z2-orbit-track not z2-orbit-ring for the circle */
+.z2-orbit-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 .z2-orbit-track {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   border: 1px dashed;
   opacity: 0.4;
@@ -322,8 +350,8 @@
 .z2-orbit-center {
   position: absolute;
   z-index: 5;
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: 2px solid;
   display: flex;
@@ -346,8 +374,12 @@
 
 .z2-orbit-ring {
   position: absolute;
+  top: 50%;
+  left: 50%;
   width: calc(var(--orbit-radius) * 2);
   height: calc(var(--orbit-radius) * 2);
+  margin-top: calc(-1 * var(--orbit-radius));
+  margin-left: calc(-1 * var(--orbit-radius));
   border: 1px dashed var(--border);
   border-radius: 50%;
   animation: rotateOrbit var(--orbit-duration) linear infinite;
@@ -397,17 +429,16 @@
 
 .z2-member-tooltip {
   position: absolute;
-  bottom: 56px;
+  bottom: 54px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--text-h);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 8px 14px;
+  padding: 6px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 120px;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
   z-index: 20;
   pointer-events: none;
@@ -423,32 +454,28 @@
   color: #fff;
   white-space: nowrap;
 }
-.z2-tooltip-role {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.6);
-  white-space: nowrap;
-  margin-top: 2px;
-}
 
-/* FIXED: JSX uses z2-team-chips-row, CSS had z2-team-list-below */
 .z2-team-chips-row,
 .z2-team-list-below {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 16px 20px 0;
+  padding-top: 12px;
+  width: 100%;
   position: relative;
   z-index: 2;
+  border-top: 1px dashed var(--border);
 }
 .z2-team-chip {
   display: flex;
   align-items: center;
-  gap: 6px;
-  background: var(--code-bg);
+  gap: 8px;
+  background: #fff;
   border: 1px solid;
   border-radius: 100px;
-  padding: 5px 14px;
+  padding: 6px 16px;
+  box-shadow: 0 2px 6px rgba(10,25,47,0.04);
 }
 .z2-chip-dot {
   width: 7px;
@@ -470,7 +497,8 @@
 .z2-demo-wrapper { width: 100%; }
 .z2-demo-card {
   display: flex;
-  background: #fff;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 36px;
@@ -554,6 +582,220 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
+/* ─── Media Gallery ───────────────────────────── */
+.z2-media-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.z2-media-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Image button */
+.z2-media-img-btn {
+  position: relative;
+  display: block;
+  border: none;
+  padding: 0;
+  cursor: zoom-in;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--code-bg);
+  box-shadow: 0 2px 12px rgba(10,25,47,0.08);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+  aspect-ratio: 16 / 9;
+}
+.z2-media-img-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(10,25,47,0.14), 0 0 0 2px var(--accent);
+}
+.z2-media-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.3s;
+}
+.z2-media-img-btn:hover .z2-media-thumb {
+  filter: brightness(0.85);
+}
+.z2-media-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+  background: rgba(0,0,0,0.15);
+}
+.z2-media-img-btn:hover .z2-media-overlay { opacity: 1; }
+.z2-media-zoom {
+  background: rgba(255,255,255,0.95);
+  color: var(--text-h);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 100px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* Video wrapper */
+.z2-media-video-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 2px 12px rgba(10,25,47,0.08);
+  aspect-ratio: 16 / 9;
+}
+.z2-media-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Type badge */
+.z2-media-type-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 3px 9px;
+  border-radius: 100px;
+  pointer-events: none;
+}
+
+/* Caption */
+.z2-media-caption {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ─── Media Empty State ───────────────────────── */
+.z2-media-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  gap: 12px;
+  border: 2px dashed var(--border);
+  border-radius: 18px;
+  background: var(--code-bg);
+  color: var(--muted);
+}
+.z2-media-empty-icon { font-size: 36px; }
+.z2-media-empty-text {
+  font-size: 14px;
+  line-height: 1.65;
+  max-width: 340px;
+  margin: 0;
+}
+.z2-media-empty-text code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--border);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+/* ─── Lightbox Overlay ────────────────────────── */
+.z2-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(5, 10, 24, 0.88);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeInLightbox 0.22s ease both;
+}
+@keyframes fadeInLightbox {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.z2-lightbox-inner {
+  position: relative;
+  max-width: min(90vw, 1000px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: scaleLightbox 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes scaleLightbox {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.z2-lightbox-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+}
+.z2-lightbox-close:hover {
+  background: rgba(255,255,255,0.22);
+  transform: scale(1.1);
+}
+
+.z2-lightbox-img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 16px;
+  object-fit: contain;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  display: block;
+}
+.z2-lightbox-video {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 16px;
+  background: #000;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  display: block;
+}
+.z2-lightbox-caption {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  text-align: center;
+  font-style: italic;
+  margin: 0;
+}
+
 /* ─── Shared slide-up animation ───────────────── */
 @keyframes slideUpFade {
   from { opacity: 0; transform: translateY(14px); }
@@ -598,4 +840,7 @@
   .z2-demo-card { flex-direction: column; text-align: center; align-items: center; padding: 24px; gap: 20px; }
   .z2-demo-btn { margin: 0 auto; }
   .z2-team-orbit-wrapper { min-height: 280px; padding: 20px 0 80px; }
+  .z2-media-gallery { grid-template-columns: 1fr; }
+  .z2-lightbox-inner { max-width: 95vw; }
+  .z2-lightbox-close { top: -12px; right: -12px; width: 34px; height: 34px; font-size: 14px; }
 }
